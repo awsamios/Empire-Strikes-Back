@@ -1,0 +1,20 @@
+/* 
+  Localizable.strings
+  EmpireStrikesBack
+
+  Created by Samira AOUINE on 01/12/2018.
+  Copyright © 2018 ACME. All rights reserved.
+*/
+
+"space_travels_page_title" = "LAST TRIPS";
+"travel_details_departure_title" = "Departure";
+"travel_details_arrival_title" = "Arrival";
+"travel_details_duration_title" = "Trip Duration";
+"travel_details_distance_title" = "Trip Distance";
+"travel_details_rating_title" = "Pilot Rating";
+"travel_details_no_rating_message" = "USER DIDN'T RATE YET";
+"common_error_title" = "Error";
+"common_ok" = "OK";
+"no_data_error_message" = "No data available";
+"bad_input_error_message" = "Verify the input data";
+"common_error_message" = "An error has occurred";
