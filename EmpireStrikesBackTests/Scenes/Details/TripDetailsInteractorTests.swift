@@ -79,22 +79,18 @@ class TripDetailsInteractorTests: XCTestCase {
     // Then
     XCTAssert(presenterMock.errorType == .badInput, "Need to have trip Id")
     XCTAssertTrue(presenterMock.serviceFailureCalled, "Need to have trip Id")
-   
+    
     // When
     sut.tripIdentifier = 1
     sut.fetchTripDetails()
+    
     // Then
     
     XCTAssert(self.workerMock.trip != nil, "Trip should be nil")
-    
     XCTAssert(workerMock.fetchTripDetailsCalled, "fetchAvailableTrips() should ask SpaceTravelWorker to fetch trips")
-    
     XCTAssert(presenterMock.presentFetchedTripCalled, "fetchAvailableTrips() should ask presenter to format trips result")
-    
     XCTAssert(presenterMock.showLoaderCalled, "fetchAvailableTrips() should ask presenter to show loader")
-    
     XCTAssert(presenterMock.hideLoaderCalled, "fetchAvailableTrips() should ask presenter to hide loader")
-    
   }
   
   func testMethodFailureCallExpetations() {
@@ -119,5 +115,44 @@ class TripDetailsInteractorTests: XCTestCase {
     XCTAssert(presenterMock.hideLoaderCalled, "fetchAvailableTrips() should ask presenter to hide loader")
     
     XCTAssert(presenterMock.serviceFailureCalled, "fetchAvailableTrips() should failure")
+  }
+  
+  func testPresenterMethodsCalls() {
+    // Given
+    
+    let presenterMock = TripDetailsPresenterMock()
+    sut.output = presenterMock
+    
+    
+    // When
+    self.workerMock.isSuccess = true
+    self.sut.travelWorker = workerMock
+    sut.tripIdentifier = 1
+    sut.fetchTripDetails()
+    
+    // Then
+    
+    XCTAssertTrue(presenterMock.presentFetchedTripCalled)
+    XCTAssertTrue(presenterMock.showLoaderCalled)
+    XCTAssertTrue(presenterMock.hideLoaderCalled)
+    XCTAssertFalse(presenterMock.serviceFailureCalled)
+    
+    // Given
+    
+    self.workerMock.isSuccess = false
+    self.sut.travelWorker = workerMock
+    // When
+    sut.tripIdentifier = 1
+    sut.fetchTripDetails()
+    
+    XCTAssertTrue(presenterMock.serviceFailureCalled)
+    
+    // When
+    sut.tripIdentifier = -1
+    sut.fetchTripDetails()
+    
+    
+    XCTAssertTrue(presenterMock.serviceFailureCalled)
+    
   }
 }

@@ -86,7 +86,7 @@ class TripDetailsViewControllerTests: XCTestCase {
     presenter.view = sut
     
     // When
-    
+    // to trigger viewDidLoad
     _ = sut.view
     
     // Then

@@ -29,6 +29,8 @@ class SpaceTravelListViewController: UIViewController {
     interactor?.fetchAvailableTrips()
   }
   
+  /// MARK: - Functions
+  
   func setupUI() {
     tableView.estimatedRowHeight = 88
     tableView.rowHeight = UITableView.automaticDimension
@@ -44,6 +46,7 @@ extension SpaceTravelListViewController: UITableViewDelegate, UITableViewDataSou
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    
     guard let cell = tableView.dequeueReusableCell(
       withIdentifier: cellIdentifier, for: indexPath) as? SpaceTravelListTableViewCell else {
         return UITableViewCell()
@@ -62,6 +65,7 @@ extension SpaceTravelListViewController: UITableViewDelegate, UITableViewDataSou
   }
 }
 
+/// MARK: - SpaceTravelListPresenterOutput
 extension SpaceTravelListViewController: SpaceTravelListPresenterOutput {
   func serviceFailure(error: ServiceErrorType) {
     var message = ""
@@ -77,19 +81,11 @@ extension SpaceTravelListViewController: SpaceTravelListPresenterOutput {
     }
     
     let alertController = UIAlertController(title: "common_error_title".localized, message: message, preferredStyle: .alert)
-    let okAction = UIAlertAction.init(title: "common_ok".localized, style: .default, handler: nil)
+    let okAction = UIAlertAction(title: "common_ok".localized, style: .default, handler: nil)
     alertController.addAction(okAction)
     
     present(alertController, animated: true, completion: nil)
   }
-  
-//  func showLoader() {
-//    
-//  }
-//  
-//  func hideLoader() {
-//    
-//  }
   
   func displayTrips(viewModel: TravelModels.List.ViewModel) {
     self.trips = viewModel.displayedTrips

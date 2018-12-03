@@ -37,6 +37,7 @@ class SpaceTravelDetailsViewController: UIViewController {
     interactor?.fetchTripDetails()
   }
   
+  /// MARK: - Fucntions
   func setup() {
     noRatingLabel.text = "travel_details_no_rating_message".localized
   }
@@ -47,6 +48,7 @@ class SpaceTravelDetailsViewController: UIViewController {
   }
 }
 
+/// MARK: - SpaceTravelDetailsPresenterOutput
 extension SpaceTravelDetailsViewController: SpaceTravelDetailsPresenterOutput {
   func serviceFailure(error: ServiceErrorType) {
     var message = ""

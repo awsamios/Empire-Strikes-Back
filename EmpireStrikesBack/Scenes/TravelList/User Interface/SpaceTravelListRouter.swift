@@ -18,7 +18,7 @@ class SpaceTravelListRouter: SpaceTravelListRouterInput, SpaceTravelListDataPass
     guard let source = view as? SpaceTravelListViewController,
       let destination = ModuleFactory.prepareTravelDetailsViewController() as? SpaceTravelDetailsViewController else {
         
-        Logger.fatal("Source should be SpaceTravelListViewController and destination")
+        Logger.fatal("Source should be SpaceTravelListViewController and destination SpaceTravelDetailsViewController")
         return
     }
     

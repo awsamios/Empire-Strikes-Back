@@ -14,15 +14,15 @@ class SpaceTravelWorker: GenericRemoteService, SpaceTravelProvider {
   var networkService: NetworkProvider!
   
   override init() {
+    super.init()
+    
     environment = Environment(VendorKeyProvider.hostServiceAPI, name: VendorKeyProvider.envConfiguration.rawValue)
     networkService = Network(environment: self.environment)
-    
-    super.init()
+    dateFormatter = DateFormatter.ISOTimezoneDateFormatter
   }
   
   func fetchSpaceTravelList(completion: SpaceTravelResultCompletion?) {
     
-    dateFormatter = DateFormatter.ISOTimezoneDateFormatter
     let requestParams = RequestParams.url([:])
     requestInput = ESBRequest(path: "trips", method: .get, parameters: requestParams)
     
@@ -32,7 +32,6 @@ class SpaceTravelWorker: GenericRemoteService, SpaceTravelProvider {
   func fetchTripDetails(_ identifier: Int, completion: SpaceTravelDetailsResultCompletion?) {
     
     let path = "trips/\(identifier)"
-    dateFormatter = DateFormatter.ISOTimezoneDateFormatter
     let requestParams = RequestParams.url([:])
     requestInput = ESBRequest(path: path, method: .get, parameters: requestParams)
     

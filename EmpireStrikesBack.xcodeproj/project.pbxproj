@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		24B2690CA98C40A78B6339DA /* Pods_EmpireStrikesBack.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ECDC9D3DDEAE6FBCC536BD4F /* Pods_EmpireStrikesBack.framework */; };
+		3700B46721B599CD00F7B314 /* ListTripsRouterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3700B46621B599CD00F7B314 /* ListTripsRouterTests.swift */; };
 		370A99C121B3325E0088431C /* Int+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370A99C021B3325E0088431C /* Int+Extensions.swift */; };
 		370A99C421B33F120088431C /* SpaceTravelWorkerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370A99C321B33F120088431C /* SpaceTravelWorkerTests.swift */; };
 		370A99C721B340530088431C /* TripsMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370A99C621B340530088431C /* TripsMock.swift */; };
@@ -93,6 +94,7 @@
 
 /* Begin PBXFileReference section */
 		0F08F7C9E002180BD7041001 /* Pods-EmpireStrikesBackTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EmpireStrikesBackTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-EmpireStrikesBackTests/Pods-EmpireStrikesBackTests.release.xcconfig"; sourceTree = "<group>"; };
+		3700B46621B599CD00F7B314 /* ListTripsRouterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTripsRouterTests.swift; sourceTree = "<group>"; };
 		370A99BF21B311340088431C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
 		370A99C021B3325E0088431C /* Int+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Extensions.swift"; sourceTree = "<group>"; };
 		370A99C321B33F120088431C /* SpaceTravelWorkerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpaceTravelWorkerTests.swift; sourceTree = "<group>"; };
@@ -224,6 +226,7 @@
 				370A99C921B3469F0088431C /* ListTripsInteractorTests.swift */,
 				370A99CC21B34DB60088431C /* ListTripsPresenterTests.swift */,
 				370A99CE21B353670088431C /* ListTripsViewControllerTests.swift */,
+				3700B46621B599CD00F7B314 /* ListTripsRouterTests.swift */,
 			);
 			path = List;
 			sourceTree = "<group>";
@@ -762,6 +765,7 @@
 				370A99CF21B353670088431C /* ListTripsViewControllerTests.swift in Sources */,
 				370A99CA21B3469F0088431C /* ListTripsInteractorTests.swift in Sources */,
 				370A99CD21B34DB60088431C /* ListTripsPresenterTests.swift in Sources */,
+				3700B46721B599CD00F7B314 /* ListTripsRouterTests.swift in Sources */,
 				370A99C721B340530088431C /* TripsMock.swift in Sources */,
 				370A99D721B47A170088431C /* TripDetailsViewController.swift in Sources */,
 			);

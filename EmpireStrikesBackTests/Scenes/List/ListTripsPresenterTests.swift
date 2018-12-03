@@ -9,22 +9,19 @@
 @testable import EmpireStrikesBack
 import XCTest
 
-class ListTripsPresenterTests: XCTestCase
-{
+class ListTripsPresenterTests: XCTestCase {
   // MARK: - Subject under test
   
   var sut: SpaceTravelListPresenter!
   
   // MARK: - Test lifecycle
   
-  override func setUp()
-  {
+  override func setUp() {
     super.setUp()
     setupListTripsPresenter()
   }
   
-  override func tearDown()
-  {
+  override func tearDown() {
     super.tearDown()
   }
   

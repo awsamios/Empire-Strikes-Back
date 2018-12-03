@@ -17,8 +17,7 @@ class ListTripsViewControllerTests: XCTestCase {
   
   // MARK: - Test lifecycle
   
-  override func setUp()
-  {
+  override func setUp() {
     super.setUp()
     window = UIWindow()
     setupListTripsViewController()
@@ -36,16 +35,28 @@ class ListTripsViewControllerTests: XCTestCase {
     XCTAssertNotNil(sut)
   }
   
-  func loadView()
-  {
+  func loadView() {
     window.addSubview(sut.view)
     RunLoop.current.run(until: Date())
   }
   
   // MARK: - Test doubles
   
-  class ListTripsInteractorMock: SpaceTravelListInteractorInput
-  {
+  class ListTripsRouterMock: SpaceTravelListRouterInput, SpaceTravelListDataPassing {
+    var dataStore: SpaceTravelListDataStore?
+    
+    // MARK: Method call expectations
+    
+    var routeDetailsCalled = false
+    
+    var tripId: Int!
+    func routeToTripDetails(_ tripId: Int) {
+      routeDetailsCalled = true
+      self.tripId = tripId
+    }
+  }
+  
+  class ListTripsInteractorMock: SpaceTravelListInteractorInput {
     var trips: [Trips] = []
     
     // MARK: Method call expectations
@@ -59,8 +70,7 @@ class ListTripsViewControllerTests: XCTestCase {
     }
   }
   
-  class TableViewSpy: UITableView
-  {
+  class TableViewSpy: UITableView {
     // MARK: Method call expectations
     
     var reloadDataCalled = false
@@ -75,8 +85,7 @@ class ListTripsViewControllerTests: XCTestCase {
   
   // MARK: - Tests
   
-  func testShouldFetchTripsWhenViewDidLoad()
-  {
+  func testShouldFetchTripsWhenViewDidLoad() {
     // Given
     let interactorMock = ListTripsInteractorMock()
     sut.interactor = interactorMock
@@ -88,8 +97,7 @@ class ListTripsViewControllerTests: XCTestCase {
     XCTAssert(interactorMock.fetchTripsCalled, "Should fetch trips right after the view did load")
   }
   
-  func testShouldDisplayFetchedTrips()
-  {
+  func testShouldDisplayFetchedTrips() {
     // Given
     let tableViewSpy = TableViewSpy()
     sut.tableView = tableViewSpy
@@ -133,8 +141,7 @@ class ListTripsViewControllerTests: XCTestCase {
     XCTAssertEqual(sut.trips.count, numberOfRows, "The number of table view rows should be 2")
   }
   
-  
-  func testShouldConfigureTableViewCellToDisplayOrder() {
+  func testShouldConfigureTableViewCellToDisplayTrip() {
     // Given
     _ = sut.view
     let tableView = sut.tableView
@@ -176,5 +183,36 @@ class ListTripsViewControllerTests: XCTestCase {
     XCTAssertEqual(
       cell?.pilotNameLabel.text, "BOBA FETT",
       "A properly configured table view cell should display the pilot name")
+  }
+  
+  func testRouting() {
+    // Given
+    
+    let routerMock = ListTripsRouterMock()
+    sut.router = routerMock
+    
+    _ = sut.view
+    let tableView = sut.tableView
+    
+    let trip1 = TravelModels.List.ViewModel.DisplayedTrip(
+      identifier: 1,
+      pilotPhotoName: "static/boba-fett",
+      pilotName: "BOBA FETT",
+      pickUpName: "Hoth",
+      dropOffName: "Tatooine",
+      rating: 0,
+      isRatingVisible: false)
+    
+    let viewModel = TravelModels.List.ViewModel(displayedTrips: [trip1])
+    sut.displayTrips(viewModel: viewModel)
+    
+    // When
+    let indexPath = IndexPath(row: 0, section: 0)
+    sut.tableView(tableView!, didSelectRowAt: indexPath)
+    // Then
+    
+    XCTAssertTrue(routerMock.routeDetailsCalled, "When selecting cell, view should call route to navigate to details")
+    
+    XCTAssertEqual(routerMock.tripId, 1)
   }
 }

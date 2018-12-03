@@ -17,14 +17,12 @@ class TripDetailsPresenterTests: XCTestCase
   
   // MARK: - Test lifecycle
   
-  override func setUp()
-  {
+  override func setUp() {
     super.setUp()
     setupTripDetailsPresenter()
   }
   
-  override func tearDown()
-  {
+  override func tearDown() {
     super.tearDown()
   }
   
@@ -37,7 +35,6 @@ class TripDetailsPresenterTests: XCTestCase
   // MARK: - Test doubles
   
   class TripDetailsViewMock: SpaceTravelDetailsPresenterOutput {
-    
     
     var displayFetchedTripCalled = false
     var showLoaderCalled = false
@@ -56,7 +53,6 @@ class TripDetailsPresenterTests: XCTestCase
     func displayTripDetails(viewModel: TravelModels.Details.ViewModel){
       displayFetchedTripCalled = true
       self.viewModel = viewModel
-      
     }
     
     func serviceFailure(error: ServiceErrorType) {

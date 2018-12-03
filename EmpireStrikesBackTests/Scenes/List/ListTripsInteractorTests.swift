@@ -120,7 +120,7 @@ class ListTripsInteractorTests: XCTestCase {
     sut.fetchAvailableTrips()
     
     // Then
-    XCTAssertTrue(sut.trips.count == 2, "We should have 1 trip")
+    XCTAssertEqual(sut.trips.count, 2, "We should have 1 trip")
     
     XCTAssert(workerMock.fetchTripListCalled, "fetchAvailableTrips() should ask SpaceTravelWorker to fetch trips")
     
